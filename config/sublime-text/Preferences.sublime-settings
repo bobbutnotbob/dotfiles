@@ -1,0 +1,7 @@
+{
+	"ignored_packages":
+	[],
+	"font_size": 11,
+	"theme": "Adaptive.sublime-theme",
+	"color_scheme": "Packages/User/PyWal.sublime-color-scheme"
+}
