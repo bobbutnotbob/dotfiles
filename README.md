@@ -1,2 +1,2 @@
 # dotfiles
-My Linux configs
+My Linux configuration files, to make getting up and running on a new machine or distro a breeze.
