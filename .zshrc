@@ -2,12 +2,12 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/h4stur/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Python and Java Paths
 export PATH=/usr/lib/jvm/java-11-openjdk/bin:$PATH
-export PATH=/home/h4stur/.local/bin:$PATH
-export PYTHONPATH=/home/h4stur/.local/bin:$PYTHONPATH
+export PATH=$HOME/.local/bin:$PATH
+export PYTHONPATH=$HOME/.local/bin:$PYTHONPATH
 
 
 # Set name of the theme to load --- if set to "random", it will
@@ -69,7 +69,7 @@ ZSH_THEME="fletcherm"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM=$HOME/dotfiles/oh-my-zsh/custom
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -83,7 +83,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # set terminal theme
-(cat ~/.cache/wal/sequences &)
+#(cat ~/.cache/wal/sequences &)
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
