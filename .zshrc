@@ -83,7 +83,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # set terminal theme
-#(cat ~/.cache/wal/sequences &)
+(cat ~/.cache/wal/sequences &)
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
