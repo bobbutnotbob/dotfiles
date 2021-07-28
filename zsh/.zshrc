@@ -76,6 +76,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# source other files
+source $ZDOTDIR/keybinds
+
 # set terminal theme
 (cat ~/.cache/wal/sequences &)
 

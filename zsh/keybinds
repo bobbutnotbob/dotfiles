@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+bindkey -r "^[/"
+bindkey "^H" backward-kill-word
