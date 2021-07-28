@@ -4,12 +4,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Python and Java Paths
-export PATH=/usr/lib/jvm/java-11-openjdk/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PYTHONPATH=$HOME/.local/bin:$PYTHONPATH
-
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -82,6 +76,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# source other files
+source $ZDOTDIR/keybinds
+
 # set terminal theme
 (cat ~/.cache/wal/sequences &)
 
@@ -106,7 +103,8 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="subl ~/.zshrc"
+
+alias zshconfig="subl $ZDOTDIR/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Alias Functions
