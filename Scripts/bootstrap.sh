@@ -2,6 +2,11 @@
 
 SCRIPTDIR="$(dirname "$(readlink -f "$0")")"
 
+# ---SYMLINK ALL THE THINGS---
+for f in "$SCRIPTDIR/../config"; do
+	echo $f
+done
+
 # Zsh Setup
 ln -s $SCRIPTDIR/../zsh/.zshenv $HOME
 
