@@ -1,0 +1,5 @@
+# Ignore whatever wacky business sublime is spewing out
+config/sublime-text/Local
+
+# Ignore all logs as well bc we don't want those
+**/Logs
