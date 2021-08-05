@@ -10,4 +10,4 @@ THEMING=(lxappearance python-pywal)
 
 # Installs packages in sets
 # Remove any packages you don't want to be installed
-yay -a -S $WEB $UTILITIES $MEDIA $COMMUNICATION $DOCUMENT $PENTEST $THEMING
+yay -S $WEB $UTILITIES $MEDIA $COMMUNICATION $DOCUMENT $PENTEST $THEMING
