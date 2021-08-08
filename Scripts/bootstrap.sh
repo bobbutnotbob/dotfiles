@@ -1,15 +1,16 @@
 #!/bin/zsh
 
 SCRIPTDIR="$(dirname "$(readlink -f "$0")")"
+CONFIGDIR="$SCRIPTDIR/../config"
 
 # ---SYMLINK ALL THE THINGS---
-for f in $SCRIPTDIR/../config/*; do
+for f in $CONFIGDIR/*; do
 	configfile="$(basename "$f")"
 	configfile_path="$HOME/.config/$configfile"
 	if [ -e $configfile_path ] && [ ! -L $configfile_path ]; then
 		echo "$configfile_path exists, creating symlink"
 		rm -rf $configfile_path
-		ln -s $SCRIPTDIR/$configfile $configfile_path
+		ln -s $CONFIGDIR/$configfile $configfile_path
 	fi
 done
 
