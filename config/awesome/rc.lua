@@ -10,6 +10,14 @@ require("awful.autofocus")
 local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
+-- Pavel Widgets {{{
+-- Volume
+local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+-- Brightness
+local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
+-- Battery
+local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
+-- }}}
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
@@ -210,6 +218,12 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            brightness_widget{
+                program = "xbacklight",
+                timeout = 120
+            },
+            volume_widget(),
+            battery_widget(),
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
@@ -221,9 +235,9 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
+    awful.button({ }, 3, function () mymainmenu:toggle() end)
+    --awful.button({ }, 4, awful.tag.viewnext),
+    --awful.button({ }, 5, awful.tag.viewprev)
 ))
 -- }}}
 
@@ -309,11 +323,15 @@ globalkeys = gears.table.join(
                   end
               end,
               {description = "restore minimized", group = "client"}),
-
-    -- Prompt
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
-
+    -- Launch Programs {{{
+    -- Firefox
+    awful.key({ modkey },            "f",     function () awful.spawn("firefox") end,
+              {description = "launch firefox", group = "launcher"}),
+    -- Ranger
+    awful.key({ modkey },            "r",     function () awful.spawn("urxvt -i -e 'ranger'") end,
+              {description = "launch ranger", group = "launcher"}),
+    -- }}}
+    -- Lua Prompt
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run {
@@ -326,17 +344,30 @@ globalkeys = gears.table.join(
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "d", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
+    -- Volume
+    awful.key({}, "XF86AudioRaiseVolume", function() volume_widget:inc() end,
+              {description = "raise volume", group = "media"}),
+    awful.key({}, "XF86AudioLowerVolume", function() volume_widget:dec() end,
+              {description = "lower volume", group = "media"}),
+    awful.key({}, "XF86AudioMute", function() volume_widget:toggle() end,
+              {description = "mute audio", group = "media"}),
+
+    -- Brightness2
+    awful.key({}, "XF86MonpBrightnessUp", function() brightness_widget:inc() end,
+              {description = "raise brightness", group = "media"}),
+    awful.key({}, "XF86MonBrightnessDown", function() brightness_widget:dec() end,
+              {description = "lower brightness", group = "media"})
 )
 
 clientkeys = gears.table.join(
-    awful.key({ modkey,           }, "f",
+    awful.key({ modkey, "Shift" }, "f",
         function (c)
             c.fullscreen = not c.fullscreen
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
+    awful.key({ modkey }, "q",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
@@ -493,8 +524,8 @@ awful.rules.rules = {
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+    { rule = { class = "Firefox" },
+      properties = { screen = 1, tag = "2" } },
 }
 -- }}}
 
@@ -503,7 +534,7 @@ awful.rules.rules = {
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
-    -- if not awesome.startup then awful.client.setslave(c) end
+    if not awesome.startup then awful.client.setslave(c) end
 
     if awesome.startup
       and not c.size_hints.user_position
@@ -514,7 +545,7 @@ client.connect_signal("manage", function (c)
 end)
 
 -- Gaps
-beautiful.useless_gap = 6
+beautiful.useless_gap = 5
 
 -- Set wallpaper and colours
 awful.spawn.with_shell("feh --bg-scale $HOME/Pictures/Wallpapers/dV66axw-space-fantasy-wallpaper.jpg")
