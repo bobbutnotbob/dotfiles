@@ -1,0 +1,8 @@
+!
+! Swap Caps_Lock and Insert
+!
+remove Lock = Caps_Lock
+remove Lock = Insert
+keysym Insert = Caps_Lock
+keysym Caps_Lock = Escape
+add Lock = Caps_Lock

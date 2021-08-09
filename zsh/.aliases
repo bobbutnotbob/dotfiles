@@ -1,0 +1,8 @@
+# Aliases
+alias zshconfig="nvim $ZDOTDIR/.zshrc"
+alias v="nvim"
+
+# Functions
+function copyfile() {
+	cat "$1" | xclip -selection c
+}
