@@ -8,3 +8,7 @@ config/sublime-text/Packages/User/PyWal.sublime-color-scheme
 
 # Zsh is spitting out some some stuff we don't want
 zsh/.zcompdump*
+
+# A folder for all the stuff we're going to download from GitHub
+# (just so I'm not committing too much of other people's stuff)
+gitgrabs

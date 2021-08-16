@@ -212,10 +212,9 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
-            s.mytaglist,
             s.mypromptbox,
         },
-        s.mytasklist, -- Middle widget
+        s.mytaglist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             brightness_widget{
@@ -354,7 +353,7 @@ globalkeys = gears.table.join(
               {description = "mute audio", group = "media"}),
 
     -- Brightness2
-    awful.key({}, "XF86MonpBrightnessUp", function() brightness_widget:inc() end,
+    awful.key({}, "XF86MonBrightnessUp", function() brightness_widget:inc() end,
               {description = "raise brightness", group = "media"}),
     awful.key({}, "XF86MonBrightnessDown", function() brightness_widget:dec() end,
               {description = "lower brightness", group = "media"})
