@@ -1,0 +1,8 @@
+$DOTFILES/config/awesome/rc.lua
+$DOTFILES/config/ranger/rc.conf
+$DOTFILES/config/sublime-text/Packages/User/Preferences.sublime-settings
+$DOTFILES/zsh/.zshrc
+$DOTFILES/zsh/.zshenv
+$DOTFILES/zsh/.zprofile
+$DOTFILES/zsh/.aliases
+$DOTFILES/zsh/keybinds

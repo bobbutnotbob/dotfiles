@@ -2,7 +2,11 @@
 alias zshconfig="nvim $ZDOTDIR/.zshrc"
 alias v="nvim"
 
-# Functions
+## Functions
 function copyfile() {
 	cat "$1" | xclip -selection c
 }
+
+# Fzf
+function rc() { sed "s|\$DOTFILES|$DOTFILES|g" $DOTFILES/config/list.txt | fzf | xargs -r -I % $EDITOR % ;}
+
