@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+[ -L $HOME/.Xresources ] && rm $HOME/.Xresources
+cat $HOME/.cache/wal/colors.Xresources > $HOME/.Xresources
+cat $DOTFILES/.Xresources >> $HOME/.Xresources
