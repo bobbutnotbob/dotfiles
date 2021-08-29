@@ -1,5 +1,5 @@
 ---------------------------
--- Default awesome theme --
+-- My Awesome theme, designed to pull PyWal generated colours --
 ---------------------------
 
 local theme_assets = require("beautiful.theme_assets")
@@ -136,6 +136,10 @@ theme.layout_cornernw = themes_path.."default/layouts/cornernww.png"
 theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
 theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
 theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
+
+-- Programs to ignore when window swallowing
+theme.dont_swallow_classname_list    = {"firefox", "Gimp"}
+theme.dont_swallow_filter_activated  = true
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(

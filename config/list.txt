@@ -1,8 +1,11 @@
+$DOTFILES/config/list.txt
 $DOTFILES/config/awesome/rc.lua
+$DOTFILES/config/awesome/themes/pywal/theme.lua
 $DOTFILES/config/ranger/rc.conf
+$DOTFILES/config/nvim/init.vim
 $DOTFILES/config/sublime-text/Packages/User/Preferences.sublime-settings
-$DOTFILES/zsh/.zshrc
-$DOTFILES/zsh/.zshenv
-$DOTFILES/zsh/.zprofile
-$DOTFILES/zsh/.aliases
-$DOTFILES/zsh/keybinds
+$DOTFILES/config/zsh/.zshrc
+$DOTFILES/config/zsh/.zprofile
+$DOTFILES/config/zsh/.aliases
+$DOTFILES/config/zsh/keybinds
+/home/h4stur/.config/lf/lfrc

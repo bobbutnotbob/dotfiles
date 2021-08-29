@@ -56,6 +56,7 @@ end
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "pywal")
 beautiful.init(theme_path)
+local bling = require("bling")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
@@ -313,7 +314,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
               {description = "select previous", group = "layout"}),
 
-    awful.key({ modkey, "Control" }, "n",
+    awful.key({ modkey, "Control" }, "c",
               function ()
                   local c = awful.client.restore()
                   -- Focus restored client
@@ -325,12 +326,18 @@ globalkeys = gears.table.join(
               end,
               {description = "restore minimized", group = "client"}),
     -- Launch Programs {{{
-    -- Firefox
-    awful.key({ modkey },            "f",     function () awful.spawn("firefox") end,
+    -- Browser
+    awful.key({ modkey },            "b",     function () awful.spawn("firefox") end,
               {description = "launch firefox", group = "launcher"}),
-    -- Ranger
-    awful.key({ modkey },            "r",     function () awful.spawn("urxvt -i -e 'ranger'") end,
-              {description = "launch ranger", group = "launcher"}),
+    -- File Manager
+    awful.key({ modkey },            "n",     function () awful.spawn("urxvt -e 'lfrun'") end,
+              {description = "launch lf file manager", group = "launcher"}),
+    -- Mail Client
+    awful.key({ modkey },            "m",     function () awful.spawn("thunderbird") end,
+              {description = "launch thunderbird", group = "launcher"}),
+    -- Music Player
+    awful.key({ modkey },            ",",     function () awful.spawn("spotify") end,
+              {description = "launch spotify", group = "launcher"}),
     -- }}}
     -- Lua Prompt
     awful.key({ modkey }, "x",
@@ -378,26 +385,26 @@ clientkeys = gears.table.join(
               {description = "move to screen", group = "client"}),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
-    awful.key({ modkey,           }, "n",
+    awful.key({ modkey,           }, "c",
         function (c)
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
             c.minimized = true
         end ,
         {description = "minimize", group = "client"}),
-    awful.key({ modkey,           }, "m",
+    awful.key({ modkey,           }, "v",
         function (c)
             c.maximized = not c.maximized
             c:raise()
         end ,
         {description = "(un)maximize", group = "client"}),
-    awful.key({ modkey, "Control" }, "m",
+    awful.key({ modkey, "Control" }, "v",
         function (c)
             c.maximized_vertical = not c.maximized_vertical
             c:raise()
         end ,
         {description = "(un)maximize vertically", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "m",
+    awful.key({ modkey, "Shift"   }, "v",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c:raise()
@@ -519,14 +526,15 @@ awful.rules.rules = {
         }
       }, properties = { floating = true }},
 
-    -- Add titlebars to normal clients and dialogs
-    { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = false }
-    },
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    { rule = { class = "Firefox" },
+    -- Rules for mapping applications to certain tags
+    { rule = { class = "firefox" },
       properties = { screen = 1, tag = "2" } },
+    { rule = { class = "Thunderbird" },
+      properties = { screen = 1, tag = "8" } },
+    { rule = { class = "discord" },
+      properties = { screen = 1, tag = "8" } },
+    { rule = { class = "Spotify" },
+      properties = { screen = 1, tag = "9" } },
 }
 -- }}}
 
@@ -546,12 +554,15 @@ client.connect_signal("manage", function (c)
 end)
 
 -- Window borders
--- client.connect_signal("focus", function(c)
---                          c.border_color = beautiful.border_focus
--- end)
--- client.connect_signal("unfocus", function(c)
---                          c.border_color = beautiful.border_normal
--- end)
+client.connect_signal("focus", function(c)
+                         c.border_color = beautiful.border_focus
+end)
+client.connect_signal("unfocus", function(c)
+                         c.border_color = beautiful.border_normal
+end)
+
+-- Activate window swallowing
+-- bling.module.window_swallowing.start()
 
 -- Set wallpaper and colours
 awful.spawn.with_shell("wal -R -n")
