@@ -7,8 +7,7 @@ config/sublime-text/Packages/User/PyWal.sublime-color-scheme
 **/Logs
 
 # Zsh is spitting out some some stuff we don't want
-zsh/.zcompdump*
+config/zsh/.zcompdump*
 
-# A folder for all the stuff we're going to download from GitHub
-# (just so I'm not committing too much of other people's stuff)
-gitgrabs
+# Just ignore everything in the config folder unless I track it manually
+config
